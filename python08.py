@@ -27,18 +27,43 @@ def whoWin(player1Move, player2Move):
             return "Draw"
 
 
+def MovePlayer1():
+    while True:
+        huj = input()
+        isInAllowMove = [move for move in moves if move == huj]
+        print(isInAllowMove)
+        print(len(isInAllowMove))
+        if(len(isInAllowMove) != 0):
+            print('here') 
+            return huj
+
+
+def MovePlayer2():
+    while True:
+        huj = input()
+        isInAllowMove = [move for move in moves if move == huj]
+        print(isInAllowMove)
+        if(len(isInAllowMove) != 0): 
+            return huj
+    
+
+
+
+
 def game(): 
     print('Move player 1')
     print(moveDoc)
-    player1Move = input()
-    isInAllowMove = [move for move in moves if move == player1Move]
+    move1 = MovePlayer1()
+    move2 = MovePlayer2()
+
+
     # if len(isInAllowMove) > 0:
     # print(isInAllowMove)
-    print('Move player 2')
-    print(moveDoc)
-    player2Move = input()
+    # print('Move player 2')
+    # print(moveDoc)
+    # player2Move = input()
 
-    print(whoWin(player1Move, player2Move))
+    print(whoWin(move1, move2))
 
     
 
