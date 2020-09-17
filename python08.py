@@ -1,7 +1,14 @@
+import os
+
+
+def clear(): return os.system('cls')
+
+
 moves = ["Rock", "Scissors", "Paper"]
 [Rock, Scissors, Paper] = moves
 
 moveDoc = "Rock | Scissors | Paper\n"
+
 
 def whoWin(player1Move, player2Move):
     if player1Move == Rock:
@@ -29,44 +36,34 @@ def whoWin(player1Move, player2Move):
 
 def MovePlayer1():
     while True:
-        huj = input()
-        isInAllowMove = [move for move in moves if move == huj]
-        print(isInAllowMove)
-        print(len(isInAllowMove))
+        clear()
+        print('Move player 1')
+        print(moveDoc)
+        inputMove = input()
+        isInAllowMove = [move for move in moves if move == inputMove]
         if(len(isInAllowMove) != 0):
-            print('here') 
-            return huj
+            return inputMove
 
 
 def MovePlayer2():
     while True:
-        huj = input()
-        isInAllowMove = [move for move in moves if move == huj]
-        print(isInAllowMove)
-        if(len(isInAllowMove) != 0): 
-            return huj
-    
+        clear()
+        print('Move player 2')
+        print(moveDoc)
+        inputMove = input()
+        isInAllowMove = [move for move in moves if move == inputMove]
+        if(len(isInAllowMove) != 0):
+            return inputMove
 
 
-
-
-def game(): 
-    print('Move player 1')
-    print(moveDoc)
+def game():
     move1 = MovePlayer1()
     move2 = MovePlayer2()
 
+    clear()
 
-    # if len(isInAllowMove) > 0:
-    # print(isInAllowMove)
-    # print('Move player 2')
-    # print(moveDoc)
-    # player2Move = input()
-
-    print(whoWin(move1, move2))
-
-    
-
+    print(whoWin(move1, move2) + " WIN")
+    askToGameMore()
 
 
 def askToGameMore():
@@ -74,9 +71,9 @@ def askToGameMore():
     print('Yes | No\n')
     isPlayNextOne = input()
 
-    if isPlayNextOne:
+    if isPlayNextOne == "Yes":
         game()
 
 
-# askToGameMore()
+# start game
 game()
