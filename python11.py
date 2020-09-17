@@ -12,4 +12,6 @@ def checkTheFirstNumber(number):
   else:
     print("This is NOT first number")
 
-checkTheFirstNumber(11)
+numInput = input("Input the number, I will say u that this is first number or it is not: ")
+
+checkTheFirstNumber(int(numInput))
