@@ -1,53 +1,89 @@
-# 1. generete the number
-# 2. ask user about number string, as soon as he don't win
-# 3. said user score, and last string number
-
 import random
+import os
 
-def checkTheCodesIsEqual(mainCode, userCode):
 
-    isTheSame = True
+def clear(): return os.system('cls')
 
-    for index in range(0,4):
-        if mainCode[index] != userCode[index]:
-            isTheSame = False
-        
-    return isTheSame
+
+historyOfType = []
+historyOfScores = []
+
+
+def generateCode():
+    code = []
+
+    for index in range(0, 4):
+        while True:
+            isRepeat = False
+
+            randomNumber = random.randint(0, 9)
+
+            for codeElement in code:
+                if codeElement == randomNumber:
+                    isRepeat = True
+
+            if isRepeat == False:
+                code.append(randomNumber)
+                break
+
+    return code
+
 
 def checkDifferences(mainCode, userCode):
-  bullsNumber = 0
-  cowsNumber = 0
+    bullsNumber = 0
+    cowsNumber = 0
 
-  for index in range(0,4):
-    if mainCode[index] == userCode[index]:
-      cowsNumber += 1
+    for index in range(0, 4):
+        if mainCode[index] == userCode[index]:
+            cowsNumber += 1
 
-  for mainCodeElement in mainCode:
-    for userCodeElement in userCode:
-      if userCodeElement == mainCodeElement:
-        bullsNumber += 1
-  
-  return bullsNumber
-  
-  # bullsNumber = bullsNumber - cowsNumber
+    for mainCodeElement in mainCode:
+        for userCodeElement in userCode:
+            if userCodeElement == mainCodeElement:
+                bullsNumber += 1
+
+    bullsNumber = bullsNumber - cowsNumber
+    return [bullsNumber, cowsNumber]
 
 
-# userCode = input('Wpisz 4 cyfrowy kod rozdzielony ","')
+def askUser():
+    print('Type code like: 1325')
+    [one, two, three, four] = input('Type code here: ')
+    userCodeString = [one, two, three, four]
+    userCodeInt = list(map(int, userCodeString))
+    historyOfType.append(userCodeInt)
+    return userCodeInt
 
-mainCode = []
 
-testCode = []
+def response(bulls, cows):
 
-# the bad way to create this like that because the numbers are repeatable
+    clear()
+    for index in range(0, len(historyOfType)):
+        print(str(index + 1) + '.', historyOfType[index], 'bulls:',
+              historyOfScores[index][0], 'cows:', historyOfScores[index][1])
 
-for n in range(0, 4):
-    mainCode.append(random.randint(0,9))
+    print('\n')
+    print('Bulls: ' + str(bulls))
+    print('Cows: ' + str(cows))
 
-for n in range(0, 4):
-    testCode.append(random.randint(0,9))
 
-resoult = checkDifferences(mainCode, testCode)
-print(mainCode)
-print(testCode)
-print('-------')
-print(resoult)
+def main():
+    mainCode = generateCode()
+
+    while True:
+
+        userCode = askUser()
+
+        [bulls, cows] = checkDifferences(mainCode, userCode)
+
+        historyOfScores.append([bulls, cows])
+
+        win = cows == 4
+        if(win):
+            print('U won!')
+            break
+        else:
+            response(bulls, cows)
+
+
+main()
