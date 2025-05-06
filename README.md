@@ -1,9 +1,5 @@
-# Learn-python-in-practice
+# 🐍 Python Practice Exercises
 
-exercise
+This repository contains my completed solutions for **23 Python coding exercises** sourced from [practicepython.org](https://www.practicepython.org/).
 
-https://www.practicepython.org/exercise/2014/01/29/01-character-input.html
-
-nice online editor:
-
-https://repl.it/languages/python3
+It served as a practical way to reinforce and learn Python fundamentals.
