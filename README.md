@@ -1,4 +1,4 @@
-# 🐍 Python Practice Exercises
+# 🐍 23 Python Practice Exercises
 
 This repository contains my completed solutions for **23 Python coding exercises** sourced from [practicepython.org](https://www.practicepython.org/).
 
